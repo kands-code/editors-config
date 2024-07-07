@@ -120,6 +120,3 @@ if command -v pandoc >/dev/null 2>&1; then
     }
   fi
 fi
-
-export http_proxy=http://127.0.0.1:49580
-export https_proxy=http://127.0.0.1:49580

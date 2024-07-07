@@ -7,10 +7,14 @@ export MYSQL_HISTFILE="$XDG_STATE_HOME"/mysql_history
 allPath="$HOME/.local/bin"               # user bin
 allPath+=":$HOME/.local/share/npm/bin"   # node
 allPath+=":$HOME/.local/share/cabal/bin" # haskell
-allPath+=":$HOME/.local/share/cargo/bin" # rust
-allPath+=":$HOME/.local/share/go/bin"    # golang
+allPath+=":$HOME/.local/sdk/cargo/bin"   # rust
+allPath+=":$HOME/.local/sdk/go/bin"      # golang
 allPath+=":$PATH"
 export PATH="$allPath"
+
+# proxy
+export http_proxy=http://127.0.0.1:49580
+export https_proxy=http://127.0.0.1:49580
 
 # ghcup-env
 [ -f "/home/kands/.local/share/ghcup/env" ] && source "/home/kands/.local/share/ghcup/env"
