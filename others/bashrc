@@ -4,37 +4,42 @@
 [[ $- != *i* ]] && return
 
 alias ls='ls --color=auto'
-alias mvn="mvn --settings='${HOME}/.local/conf/settings.xml'"
-alias ww="neofetch"
+alias mvn="${HOME}/.local/sdk/maven/3.9.8/bin/mvn --settings='${HOME}/.local/sdk/maven/3.9.8/conf/settings.xml'"
+alias ww="uwufetch"
 
-# exa
-if
-  type exa &>/dev/null
-  [[ "$?" == '0' ]]
-then
-  alias ls='exa -alh --color=always --group-directories-first'
-fi
+# GPG config
+export GPG_TTY=$(tty)
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 
-# stack
-if
-  type stack &>/dev/null
-  [[ "$?" == '0' ]]
-then
-  eval "$(stack --bash-completion-script stack)"
-fi
+# daily update
+dailyup() {
+  # paru
+  paru -Syu
+  paru -Sc
+  # rust
+  if command -v rustup >/dev/null 2>&1; then
+    rustup update
+    if [ "$?" = '0' ]; then
+      cargo install --all-features \
+        mdbook \
+        mdbook-katex \
+        mdbook-toc \
+        wasm-pack \
+        pest-language-server
+    fi
+  fi
+}
 
-# scala
-if
-  type scala &>/dev/null
-  [[ "$?" == '0' ]]
-then
-  alias scala='scala'
-  alias sbt='sbt -ivy "$XDG_DATA_HOME"/sbt/ivy2 -sbt-dir "$XDG_DATA_HOME"/sbt'
+# rye init
+if command -v rye >/dev/null 2>&1; then
+  if [ -n "$RYE_HOME" ]; then
+    source "$RYE_HOME/env"
+  fi
 fi
 
 # PS1='[\u@\h \W]\$ '
 
-### self prompt
+# self prompt
 function exitstatus() {
   if [[ "$?" == '0' ]]; then
     printf "\033[1;32m[v]\033[0m"
@@ -55,32 +60,39 @@ export PS0='\[\033[0;36m\]Out[\#]:= \[\033[0m\]\n'
 export PS1='[\u@\h \w \A]-\[$(exitstatus)\]-\[$(usersymbol)\]\n\[\033[0;33m\]In[\#]:= \[\033[0m\]'
 export PS2=' ~> '
 
-## for pandoc auto complete
-
-if
-  type pandoc &>/dev/null
-  [[ "$?" == '0' ]]
-then
+# for pandoc auto complete
+if command -v pandoc >/dev/null 2>&1; then
   eval "$(pandoc --bash-completion)"
 fi
 
-# git gpg
-export GPG_TTY=$(tty)
+# stack auto complete
+if command -v stack >/dev/null 2>&1; then
+  eval "$(stack --bash-completion-script stack)"
+fi
 
-# yt-dlp
-function yd() {
-  local url="$1"
-  shift
-  if [ -z "$url" ]; then
-    echo "please give a url"
-    return 1
+# yt-dlp wrapper
+if command -v yt-dlp >/dev/null 2>&1; then
+  if command -v ffmpeg >/dev/null 2>&1; then
+    yd() {
+      local url="$1"
+      shift
+      if [ -z "$url" ]; then
+        echo "please give a url"
+        return 1
+      fi
+      yt-dlp -o "%(uploader_id)s/%(playlist_title)s/p%(playlist_index)03d-%(title)s.%(ext)s" \
+        -f "bestvideo+bestaudio" \
+        --recode-video="mp4" \
+        --write-auto-subs \
+        --sub-format="vtt" \
+        --sub-langs="en.*,zh-Hans" \
+        --embed-subs \
+        $url \
+        "$@"
+      return 0
+    }
   fi
-  yt-dlp -o "%(uploader_id)s/%(playlist_title)s/p%(playlist_index)03d-%(title)s.%(ext)s" \
-    -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best' \
-    "$url" \
-    "$@"
-  return 0
-}
+fi
 
 # webm to mp4
 function webm2mp4() {
@@ -92,19 +104,22 @@ function webm2mp4() {
     "$basename".mp4
 }
 
-# convert to a format by pandoc
-function conv2f() {
-  local ff="$1"
-  shift
-  local tt="$1"
-  shift
-  local filename="$1"
-  shift
-  local outputname="${filename%.*}.$tt"
-  pandoc -f "$ff" -t "$tt" \
-    "$filename" \
-    -o "$outputname" \
-    --pdf-engine=lualatex \
-    --metadata-file="$CONFIGHOME/others/pandoc-meta"
-  "$@"
-}
+# pandoc wrapper
+if command -v pandoc >/dev/null 2>&1; then
+  if command -v typst >/dev/null 2>&1; then
+    cv2pdf() {
+      local ftype="$1"
+      shift
+      local fname="$1"
+      shift
+      local oname="${fname%.*}.pdf"
+      pandoc -f "$ftype" -t "pdf" "$fname" \
+        -o "$oname" \
+        --pdf-engine=typst \
+        --metadata-file="$HOME/projects/config.d/others/pmeta.yaml"
+    }
+  fi
+fi
+
+export http_proxy=http://127.0.0.1:49580
+export https_proxy=http://127.0.0.1:49580
