@@ -22,6 +22,8 @@ export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
 export HOMEBREW_PREFIX="/opt/homebrew"
 export HOMEBREW_CELLAR="$HOMEBREW_PREFIX/Cellar"
 export HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX"
+# ? mirror
+export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.ustc.edu.cn/homebrew-core.git"
 export MANPATH="/usr/share/man:/usr/local/share/man"
 export MANPATH="$MANPATH:$HOMEBREW_PREFIX/share/man"
 export INFOPATH="/usr/share/info:/usr/local/share/info"
@@ -40,6 +42,9 @@ export LESSHISTFILE="$XDG_STATE_HOME/less_history"
 export JAVA_HOME="$(/usr/libexec/java_home)"
 export M2_HOME="$lens[sdk]/maven/3.9.7"
 export GRADLE_USER_HOME="$lens[data]/gradle-repo"
+export integer STACK_XDG=1
+export integer GHCUP_USE_XDG_DIRS=1
+export AGDA_DIR="$lens[sdk]/agda"
 
 # for python
 export RYE_HOME="$lens[sdk]/rye"
