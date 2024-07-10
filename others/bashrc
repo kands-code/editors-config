@@ -15,6 +15,7 @@ export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 dailyup() {
   # paru
   paru -Syu
+  paru -Fy
   paru -Sc
   # rust
   if command -v rustup >/dev/null 2>&1; then
@@ -28,13 +29,16 @@ dailyup() {
         pest-language-server
     fi
   fi
+  # haskell
+  if command -v ghcup >/dev/null 2>&1; then
+    cabal v2-update
+    stack update
+  fi
 }
 
 # rye init
-if command -v rye >/dev/null 2>&1; then
-  if [ -n "$RYE_HOME" ]; then
-    source "$RYE_HOME/env"
-  fi
+if [ -n "$RYE_HOME" ]; then
+  source "$RYE_HOME/env"
 fi
 
 # PS1='[\u@\h \W]\$ '

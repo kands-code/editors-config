@@ -47,10 +47,8 @@ dailyup() {
 }
 
 # rye init
-if command -v rye >/dev/null 2>&1; then
-  if [ -n "$RYE_HOME" ]; then
-    source "$RYE_HOME/env"
-  fi
+if [ -n "$RYE_HOME" ]; then
+  source "$RYE_HOME/env"
 fi
 
 # pandoc wrapper
