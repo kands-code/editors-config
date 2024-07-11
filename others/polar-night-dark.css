@@ -45,11 +45,15 @@
 
 .candidate-popup-boxpointer {
   -arrow-background-color: #4c566a;
+  background-color: #4c566a;
   -arrow-border-radius: 0px;
+  border-radius: 0px;
   -arrow-border-width: 0px;
+  border-width: 0px;
   -arrow-base: 0px;
   /* Fix border */
   -arrow-border-color: #4c566a;
+  border-color: #4c566a;
   background: none;
   border-image: none;
 }
