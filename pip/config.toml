@@ -34,7 +34,7 @@ force-rye-managed = true
 # Enables global shims when set to `true`.  This means that the installed
 # `python` shim will resolve to a Rye managed toolchain even outside of
 # virtual environments.
-global-python = true
+global-python = false
 
 # When set to `true` enables experimental support of uv as a replacement
 # for pip-tools. Learn more about uv here: https://github.com/astral-sh/uv

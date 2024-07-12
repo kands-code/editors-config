@@ -12,10 +12,6 @@ allPath+=":$HOME/.local/sdk/go/bin"      # golang
 allPath+=":$PATH"
 export PATH="$allPath"
 
-# proxy
-export http_proxy=http://127.0.0.1:49580
-export https_proxy=http://127.0.0.1:49580
-
 # ghcup-env
 [ -f "/home/kands/.local/share/ghcup/env" ] && source "/home/kands/.local/share/ghcup/env"
 
