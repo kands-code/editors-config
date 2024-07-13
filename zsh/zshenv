@@ -71,6 +71,6 @@ lens[path]+=":/opt/homebrew/opt/postgresql@16/bin"  # for postgres
 export PATH="$lens[path]":"$PATH"                   # user path before system path
 
 # for proxy
-export https_proxy=http://127.0.0.1:49580
-export http_proxy=$https_proxy
-export all_proxy=$https_proxy
+# export https_proxy=http://127.0.0.1:49580
+# export http_proxy=$https_proxy
+# export all_proxy=$https_proxy
