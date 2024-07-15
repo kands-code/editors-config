@@ -22,9 +22,12 @@ export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
 export HOMEBREW_PREFIX="/opt/homebrew"
 export HOMEBREW_CELLAR="$HOMEBREW_PREFIX/Cellar"
 export HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX"
+# ? mirror start
 export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.ustc.edu.cn/brew.git"
-# ? mirror
 export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.ustc.edu.cn/homebrew-core.git"
+export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
+export HOMEBREW_API_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles/api"
+# ? mirror end
 export MANPATH="/usr/share/man:/usr/local/share/man"
 export MANPATH="$MANPATH:$HOMEBREW_PREFIX/share/man"
 export INFOPATH="/usr/share/info:/usr/local/share/info"
@@ -57,6 +60,8 @@ export PYLINTHOME="$XDG_STATE_HOME/pylint"
 export MPLCONFIGDIR="$lens[config]/matplotlib"
 
 # for rust
+RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
+RUSTUP_UPDATE_ROOT="https://mirrors.ustc.edu.cn/rust-static/rustup"
 export RUSTUP_HOME="$lens[sdk]/rustup"
 export CARGO_HOME="$lens[sdk]/cargo"
 export RUST_BACKTRACE=full
