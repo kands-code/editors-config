@@ -60,8 +60,8 @@ export PYLINTHOME="$XDG_STATE_HOME/pylint"
 export MPLCONFIGDIR="$lens[config]/matplotlib"
 
 # for rust
-RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
-RUSTUP_UPDATE_ROOT="https://mirrors.ustc.edu.cn/rust-static/rustup"
+export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
+export RUSTUP_UPDATE_ROOT="https://mirrors.ustc.edu.cn/rust-static/rustup"
 export RUSTUP_HOME="$lens[sdk]/rustup"
 export CARGO_HOME="$lens[sdk]/cargo"
 export RUST_BACKTRACE=full
