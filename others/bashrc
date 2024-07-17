@@ -5,7 +5,7 @@
 
 alias ls='ls --color=auto'
 alias mvn="${HOME}/.local/sdk/maven/3.9.8/bin/mvn --settings='${HOME}/.local/sdk/maven/3.9.8/conf/settings.xml'"
-alias ww="uwufetch"
+alias ww="fastfetch"
 
 # GPG config
 export GPG_TTY=$(tty)
