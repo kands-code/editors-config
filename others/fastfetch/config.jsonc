@@ -1,0 +1,85 @@
+{
+  "$schema": "file:///home/kands/projects/github/config.d/others/fastfetch/json_schema.json",
+  "logo": {
+    "type": "small",
+    // center the logo
+    "padding": {
+      "top": 2,
+      "left": 2,
+      "right": 2
+    }
+  },
+  "display": {
+    "separator": " ~> ",
+    "temp": {
+      "unit": "K"
+    }
+  },
+  // all avaliable modules:
+  //   ["battery", "bios", "bluetooth", "board", "bootmgr", "break", "brightness",
+  //    "camera", "chassis", "cpu", "cpucache", "cpuusage", "command", "colors",
+  //    "cursor", "datetime", "display", "disk", "diskio", "de", "dns", "editor",
+  //    "font", "gamepad", "gpu", "host", "icons", "initsystem", "kernel", "lm",
+  //    "loadavg", "locale", "localip", "media", "memory", "monitor", "netio",
+  //    "opencl", "opengl", "os", "packages", "physicaldisk", "physicalmemory",
+  //    "player", "poweradapter", "processes", "publicip", "separator", "shell",
+  //    "sound", "swap", "terminal", "terminalfont", "terminalsize", "terminaltheme",
+  //    "title", "theme", "uptime", "users", "version", "vulkan", "wallpaper", "weather",
+  //    "wm", "wifi", "wmtheme"]
+  "modules": [
+    {
+      "type": "title",
+      "format": "-- {3} --"
+    },
+    {
+      "type": "host",
+      "key": "pc",
+      "format": "{3}"
+    },
+    {
+      "type": "kernel",
+      "key": "with",
+      "format": "{2}"
+    },
+    {
+      "type": "packages",
+      "key": "pkgs",
+      "format": "{1}"
+    },
+    {
+      "type": "shell",
+      "key": "sh",
+      "format": "{6}"
+    },
+    {
+      "type": "wm",
+      "key": "wm",
+      "format": "{2} [{3}]"
+    },
+    {
+      "type": "terminal",
+      "key": "term",
+      "format": "{5}"
+    },
+    {
+      "type": "cpu",
+      "key": "cpu",
+      "format": "{1} ({5}) @ {7} GHz [{8}]"
+    },
+    {
+      "type": "gpu",
+      "key": "gpu",
+      "format": "{6} ({3}) @ {4}"
+    },
+    {
+      "type": "memory",
+      "key": "mem",
+      "format": "{1} ({3})"
+    },
+    {
+      "type": "disk",
+      "key": "disk",
+      "format": "{1} [{9}] ({3})"
+    }
+  ]
+}
