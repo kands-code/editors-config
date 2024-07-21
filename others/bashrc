@@ -36,11 +36,6 @@ dailyup() {
   fi
 }
 
-# rye init
-if [ -n "$RYE_HOME" ]; then
-  source "$RYE_HOME/env"
-fi
-
 # PS1='[\u@\h \W]\$ '
 
 # self prompt

@@ -30,8 +30,7 @@ $env.HOMEBREW_PREFIX = (["/", "opt", "homebrew"] | path join)
 $env.HOMEBREW_CELLAR = ($env.HOMEBREW_PREFIX | path join "Cellar")
 $env.HOMEBREW_REPOSITORY = $env.HOMEBREW_PREFIX
 
-# opam & rye envs
-$env.RYE_HOME = ($sdk_home | path join "rye")
+# opam envs
 $env.OPAMROOT = ($sdk_home | path join "opam")
 
 # for utils
@@ -91,7 +90,6 @@ $env.PATH = ($env.PATH | split row (char esep)
   | prepend ($env.HOMEBREW_PREFIX | path join "bin") # for brew
   | prepend ($env.CARGO_HOME | path join "bin") # for cargo
   | prepend ($env.RUSTUP_HOME | path join "bin") # for rust
-  | prepend ($env.RYE_HOME| path join "shims") # for rye
   | append (["/", "local", "bin"] | path join) # for user global
   | append (["/", "usr", "sbin"] | path join) # for adim bin
   | append (["/", "sbin"] | path join) # for sbin
