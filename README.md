@@ -14,7 +14,7 @@ configs for some utils
 
 for nano editor highlightings
 
-### neofetch
+### fastfetch
 
 some self config
 

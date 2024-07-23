@@ -76,4 +76,3 @@ lens[path]+=":$HOME/.local/bin"                     # for user local
 lens[path]+=":/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
 lens[path]+=":/opt/homebrew/opt/postgresql@16/bin"  # for postgres
 export PATH="$lens[path]":"$PATH"                   # user path before system path
-
