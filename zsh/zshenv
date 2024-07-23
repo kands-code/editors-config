@@ -61,11 +61,13 @@ export MPLCONFIGDIR="$lens[config]/matplotlib"
 # for rust
 export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
 export RUSTUP_UPDATE_ROOT="https://mirrors.ustc.edu.cn/rust-static/rustup"
+export RUSTUP_BIN="$HOMEBREW_PREFIX/opt/rustup/bin"
 export RUSTUP_HOME="$lens[sdk]/rustup"
 export CARGO_HOME="$lens[sdk]/cargo"
 export RUST_BACKTRACE=full
 
 # compose path
+lens[path]+="$RUSTUP_BIN"                           # for rustup itself
 lens[path]="$RUSTUP_HOME/bin"                       # for rustup
 lens[path]+=":$CARGO_HOME/bin"                      # for rust cargo
 lens[path]+=":$M2_HOME/bin"                         # for maven
