@@ -75,4 +75,3 @@ lens[path]+=":$M2_HOME/bin"                           # for maven
 lens[path]+=":$lens[data]/npm/bin"                    # node/npm
 lens[path]+=":$HOME/.local/bin"                       # for user local
 export PATH="$lens[path]":"$PATH"                     # user path before system path
-export PATH="$len[homebrew]":"$PATH"                  # homebrew first
