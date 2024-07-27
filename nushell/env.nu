@@ -96,11 +96,6 @@ $env.PATH = ($env.PATH | split row (char esep)
   | append ($env.HOME | path join ".local" | path join "bin") # for user local
   | append ($env.M2_HOME | path join "bin") # for maven
   | append ($data_home | path join "npm" | path join "bin") # for node/npm
-  | append ($env.HOMEBREW_PREFIX
-    | path join "opt"
-    | path join "postgresql@16"
-    | path join "bin"
-  ) # for postgresql
 )
 
 def --env opam-active [] {
