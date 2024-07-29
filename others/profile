@@ -16,6 +16,10 @@ export PATH="$allPath"
 if [[ -f "/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator" ]]; then
   export $(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
 fi
+## use en_US.UTF-8 as tty LANG
+if [[ "$XDG_SESSION_TYPE" == "tty" ]]; then
+  export LANG='en_US.UTF-8'
+fi
 systemctl --user import-environment PATH
 
 # read bashrc if it exists
