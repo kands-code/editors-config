@@ -3,7 +3,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
+alias ls="ls --color=auto"
 alias mvn="${HOME}/.local/sdk/maven/3.9.8/bin/mvn --settings='${HOME}/.local/sdk/maven/3.9.8/conf/settings.xml'"
 alias ww="fastfetch --cpu-temp --gpu-temp"
 
@@ -41,17 +41,17 @@ dailyup() {
 # self prompt
 function exitstatus() {
   if [[ "$?" == '0' ]]; then
-    printf "\033[1;32m[v]\033[0m"
+    printf '\033[1;32m[v]\033[0m'
   else
-    printf "\033[1;31m[x]\033[0m"
+    printf '\033[1;31m[x]\033[0m'
   fi
 }
 
 function usersymbol() {
   if [[ "$UID" == '0' ]]; then
-    printf "\033[1;31m[#]\033[0m"
+    printf '\033[1;31m[#]\033[0m'
   else
-    printf "\033[1;36m[$]\033[0m"
+    printf '\033[1;36m[$]\033[0m'
   fi
 }
 

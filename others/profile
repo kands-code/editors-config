@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# mysql history
-export MYSQL_HISTFILE="$XDG_STATE_HOME"/mysql_history
-
 # path
 allPath="$HOME/.local/bin"               # user bin
 allPath+=":$HOME/.local/share/npm/bin"   # node
@@ -15,4 +12,11 @@ export PATH="$allPath"
 # ghcup-env
 [ -f "/home/kands/.local/share/ghcup/env" ] && source "/home/kands/.local/share/ghcup/env"
 
+# systemd environment variables
+if [[ -f "/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator" ]]; then
+  export $(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
+fi
 systemctl --user import-environment PATH
+
+# read bashrc if it exists
+[[ -f "$HOME/.bashrc" ]] && source "$HOME/.bashrc"
