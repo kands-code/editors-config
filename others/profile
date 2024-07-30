@@ -12,15 +12,12 @@ export PATH="$allPath"
 # ghcup-env
 [ -f "/home/kands/.local/share/ghcup/env" ] && source "/home/kands/.local/share/ghcup/env"
 
-# systemd environment variables
-if [[ -f "/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator" ]]; then
-  export $(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
-fi
-if [[ -f "/usr/lib/systemd/user-environment-generators/60-flatpak" ]]; then
-  export $(/usr/lib/systemd/user-environment-generators/60-flatpak)
-fi
 ## use en_US.UTF-8 as tty LANG
 if [[ "$XDG_SESSION_TYPE" == "tty" ]]; then
+  # systemd environment variables
+  if [[ -f "/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator" ]]; then
+    export $(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
+  fi
   export LANG='en_US.UTF-8'
   export LC_NUMERIC='en_US.UTF-8'
   export LC_TIME='en_US.UTF-8'
