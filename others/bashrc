@@ -122,6 +122,26 @@ if command -v pandoc >/dev/null 2>&1; then
   fi
 fi
 
+if command -v python >/dev/null 2>&1; then
+  create-venv() {
+    local vname="$(basename $PWD)"
+    if [[ -n "$1" ]]; then
+      vname="$1"
+    fi
+    python -m venv .venv --prompt "$vname"
+  }
+
+  activate-venv() {
+    local dname=".venv"
+    if [[ -n "$1" ]]; then
+      dname="$1"
+    fi
+    if [[ -d "$PWD/$dname" ]] && [[ -f "$PWD/$dname/bin/activate" ]]; then
+      source "$PWD/$dname/bin/activate"
+    fi
+  }
+fi
+
 # aria2c wrapper
 if command -v aria2c >/dev/null 2>&1; then
   if command -v ffmpeg >/dev/null 2>&1; then
