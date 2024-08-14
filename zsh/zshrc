@@ -35,7 +35,9 @@ dailyup() {
         mdbook-katex \
         mdbook-toc \
         wasm-pack \
-        pest-language-server
+        pest-language-server \
+        create-tauri-app \
+        tauri-cli
     fi
   fi
   # haskell

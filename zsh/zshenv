@@ -15,8 +15,6 @@ export CLICOLOR=true
 export LSCOLORS="exfxcxdxbxegedabagacad"
 
 # for utils
-export XMAKE_GLOBALDIR="$lens[sdk]"
-export MIX_XDG="true"
 export PSQLRC="$lens[config]/psqlrc"
 export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
 export HOMEBREW_PREFIX="/opt/homebrew"
@@ -42,10 +40,7 @@ export NODE_PATH="/opt/homebrew/lib/node_modules:$lens[data]/npm/lib/node_module
 export LESSKEY="$lens[config]/less/lesskey"
 export LESSHISTFILE="$XDG_STATE_HOME/less_history"
 
-# for java
-export JAVA_HOME="$(/usr/libexec/java_home)"
-export M2_HOME="$lens[sdk]/maven/3.9.7"
-export GRADLE_USER_HOME="$lens[data]/gradle-repo"
+# for haskell
 export integer STACK_XDG=1
 export integer GHCUP_USE_XDG_DIRS=1
 export AGDA_DIR="$lens[sdk]/agda"
@@ -71,7 +66,5 @@ lens[homebrew]="/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
 lens[path]="$RUSTUP_BIN"                              # for rustup itself
 lens[path]+=":$RUSTUP_HOME/bin"                       # for rustup
 lens[path]+=":$CARGO_HOME/bin"                        # for rust cargo
-lens[path]+=":$M2_HOME/bin"                           # for maven
-lens[path]+=":$lens[data]/npm/bin"                    # node/npm
 lens[path]+=":$HOME/.local/bin"                       # for user local
 export PATH="$lens[path]":"$PATH"                     # user path before system path

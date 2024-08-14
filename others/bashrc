@@ -26,7 +26,9 @@ dailyup() {
         mdbook-katex \
         mdbook-toc \
         wasm-pack \
-        pest-language-server
+        pest-language-server \
+        create-tauri-app \
+        tauri-cli
     fi
   fi
   # haskell
@@ -116,6 +118,19 @@ if command -v pandoc >/dev/null 2>&1; then
         -o "$oname" \
         --pdf-engine=typst \
         --metadata-file="$HOME/projects/config.d/others/pmeta.yaml"
+    }
+  fi
+fi
+
+# aria2c wrapper
+if command -v aria2c >/dev/null 2>&1; then
+  if command -v ffmpeg >/dev/null 2>&1; then
+    a2c() {
+      aria2c --max-connection-per-server=4 \
+        --min-split-size=5M \
+        --on-download-complete=exit \
+        --continue \
+        "$@"
     }
   fi
 fi
