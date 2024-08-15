@@ -26,9 +26,7 @@ dailyup() {
         mdbook-katex \
         mdbook-toc \
         wasm-pack \
-        pest-language-server \
-        create-tauri-app
-      cargo install --all-features tauri-cli --version '^2.0.0-rc'
+        pest-language-server
     fi
   fi
   # haskell
