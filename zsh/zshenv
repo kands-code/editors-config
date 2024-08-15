@@ -67,4 +67,5 @@ lens[path]="$RUSTUP_BIN"                              # for rustup itself
 lens[path]+=":$RUSTUP_HOME/bin"                       # for rustup
 lens[path]+=":$CARGO_HOME/bin"                        # for rust cargo
 lens[path]+=":$HOME/.local/bin"                       # for user local
+lens[path]+=":$HOMEBREW_PREFIX/opt/postgresql@16/bin" # for postgresql
 export PATH="$lens[path]":"$PATH"                     # user path before system path
