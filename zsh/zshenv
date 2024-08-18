@@ -1,21 +1,21 @@
 # most use variables
-declare -lA lens
-lens[sdk]="$HOME/.local/sdk"
-lens[data]="$HOME/.local/share"
-lens[config]="$HOME/.config"
-lens[cache]="$HOME/.cache"
+declare -lA paths
+paths[sdk]="$HOME/.local/sdk"
+paths[data]="$HOME/.local/share"
+paths[config]="$HOME/.config"
+paths[cache]="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
 export EDITOR=pico
 export VISUAL=code
 
 # for zsh self
-export ZDOTDIR="$lens[config]/zsh"
+export ZDOTDIR="$paths[config]/zsh"
 export HISTFILE="$XDG_STATE_HOME/zsh_history"
 export CLICOLOR=true
 export LSCOLORS="exfxcxdxbxegedabagacad"
 
 # for utils
-export PSQLRC="$lens[config]/psqlrc"
+export PSQLRC="$paths[config]/psqlrc"
 export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
 export HOMEBREW_PREFIX="/opt/homebrew"
 export HOMEBREW_CELLAR="$HOMEBREW_PREFIX/Cellar"
@@ -32,40 +32,42 @@ export INFOPATH="/usr/share/info:/usr/local/share/info"
 export INFOPATH="$INFOPATH:$HOMEBREW_PREFIX/share/info"
 
 # for nodejs
-export NPM_CONFIG_USERCONFIG="$lens[config]/npm/npmrc"
+export NPM_CONFIG_USERCONFIG="$paths[config]/npm/npmrc"
 export NODE_REPL_HISTORY="$XDG_STATE_HOME/npm_history"
-export NODE_PATH="/opt/homebrew/lib/node_modules:$lens[data]/npm/lib/node_modules/"
+export NODE_PATH="/opt/homebrew/lib/node_modules:$paths[data]/npm/lib/node_modules/"
 
 # for less
-export LESSKEY="$lens[config]/less/lesskey"
+export LESSKEY="$paths[config]/less/lesskey"
 export LESSHISTFILE="$XDG_STATE_HOME/less_history"
 
 # for haskell
 export integer STACK_XDG=1
 export integer GHCUP_USE_XDG_DIRS=1
-export AGDA_DIR="$lens[sdk]/agda"
+export CABAL_DIR="$paths[data]/cabal"
+export CABAL_CONFIG="$paths[config]/cabal/config"
+export AGDA_DIR="$paths[sdk]/agda"
 
 # for python
-export JUPYTER_DATA_DIR="$lens[config]/jupyter"
+export JUPYTER_DATA_DIR="$paths[config]/jupyter"
 export IPYTHONDIR="$JUPYTER_DATA_DIR"
 export JUPYTER_CONFIG_DIR="$JUPYTER_DATA_DIR"
-export PYTHONSTARTUP="$lens[config]/pip/pyrc"
+export PYTHONSTARTUP="$paths[config]/pip/pyrc"
 export PYLINTHOME="$XDG_STATE_HOME/pylint"
-export MPLCONFIGDIR="$lens[config]/matplotlib"
+export MPLCONFIGDIR="$paths[config]/matplotlib"
 
 # for rust
 export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
 export RUSTUP_UPDATE_ROOT="https://mirrors.ustc.edu.cn/rust-static/rustup"
 export RUSTUP_BIN="$HOMEBREW_PREFIX/opt/rustup/bin"
-export RUSTUP_HOME="$lens[sdk]/rustup"
-export CARGO_HOME="$lens[sdk]/cargo"
+export RUSTUP_HOME="$paths[sdk]/rustup"
+export CARGO_HOME="$paths[sdk]/cargo"
 export RUST_BACKTRACE=full
 
 # compose path
-lens[homebrew]="/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
-lens[path]="$RUSTUP_BIN"                              # for rustup itself
-lens[path]+=":$RUSTUP_HOME/bin"                       # for rustup
-lens[path]+=":$CARGO_HOME/bin"                        # for rust cargo
-lens[path]+=":$HOME/.local/bin"                       # for user local
-lens[path]+=":$HOMEBREW_PREFIX/opt/postgresql@16/bin" # for postgresql
-export PATH="$lens[path]":"$PATH"                     # user path before system path
+paths[homebrew]="/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
+paths[path]="$RUSTUP_BIN"                              # for rustup itself
+paths[path]+=":$RUSTUP_HOME/bin"                       # for rustup
+paths[path]+=":$CARGO_HOME/bin"                        # for rust cargo
+paths[path]+=":$HOME/.local/bin"                       # for user local
+paths[path]+=":$HOMEBREW_PREFIX/opt/postgresql@16/bin" # for postgresql
+export PATH="$paths[path]":"$PATH"                     # user path before system path

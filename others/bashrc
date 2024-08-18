@@ -4,7 +4,6 @@
 [[ $- != *i* ]] && return
 
 alias ls="ls --color=auto"
-alias mvn="${HOME}/.local/sdk/maven/3.9.8/bin/mvn --settings='${HOME}/.local/sdk/maven/3.9.8/conf/settings.xml'"
 alias ww="fastfetch --cpu-temp --gpu-temp"
 
 # GPG config
