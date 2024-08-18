@@ -24,7 +24,6 @@ dailyup() {
         mdbook \
         mdbook-katex \
         mdbook-toc \
-        wasm-pack \
         pest-language-server
     fi
   fi
