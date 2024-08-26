@@ -118,7 +118,6 @@ if command -v aria2c >/dev/null 2>&1; then
     a2c() {
       aria2c --max-connection-per-server=4 \
         --min-split-size=5M \
-        --on-download-complete=exit \
         --continue \
         "$@"
     }
