@@ -76,33 +76,6 @@ locale config
 ln -s "<path to project>"/others/locale.conf ~/.config/locale.conf
 ```
 
-### pmeta.yaml
-
-pandoc config for generating pdfs
-
-a use case:
-
-```shell
-# pandoc wrapper
-if command -v pandoc >/dev/null 2>&1; then
-  pd() {
-    local ff="$1"
-    shift
-    local tt="$1"
-    shift
-    local filename="$1"
-    shift
-    local outputname="${filename%.*}.$tt"
-    pandoc -f "$ff" -t "$tt" \
-      "$filename" \
-      -o "$outputname" \
-      --pdf-engine=lualatex \
-      --metadata-file="<path to project>/others/pandoc-meta"
-    "$@"
-  }
-fi
-```
-
 ### paru.conf
 
 paru config

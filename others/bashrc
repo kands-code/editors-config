@@ -11,7 +11,7 @@ export GPG_TTY=$(tty)
 export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 
 # daily update
-dailyup() {
+function dailyup() {
   # paru
   paru -Syu
   paru -Fy
@@ -57,20 +57,53 @@ export PS0='\[\033[0;36m\]Out[\#]:= \[\033[0m\]\n'
 export PS1='[\u@\h \w \A]-\[$(exitstatus)\]-\[$(usersymbol)\]\n\[\033[0;33m\]In[\#]:= \[\033[0m\]'
 export PS2=' ~> '
 
-# for pandoc auto complete
-if command -v pandoc >/dev/null 2>&1; then
-  eval "$(pandoc --bash-completion)"
-fi
-
 # stack auto complete
 if command -v stack >/dev/null 2>&1; then
   eval "$(stack --bash-completion-script stack)"
 fi
 
-# yt-dlp wrapper
-if command -v yt-dlp >/dev/null 2>&1; then
-  if command -v ffmpeg >/dev/null 2>&1; then
-    yd() {
+if command -v python >/dev/null 2>&1; then
+  function create-venv() {
+    local vname="$(basename $PWD)"
+    if [[ -n "$1" ]]; then
+      vname="$1"
+    fi
+    python -m venv .venv --prompt "$vname"
+  }
+  function activate-venv() {
+    local dname=".venv"
+    if [[ -n "$1" ]]; then
+      dname="$1"
+    fi
+    if [[ -d "$PWD/$dname" ]] && [[ -f "$PWD/$dname/bin/activate" ]]; then
+      source "$PWD/$dname/bin/activate"
+    fi
+  }
+fi
+
+# video convert
+if command -v ffmpeg >/dev/null 2>&1; then
+  # webm to mp4
+  function webm2mp4() {
+    local filename="$1"
+    local basename="${filename%.*}"
+    ffmpeg -i "$filename" \
+      -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" \
+      -y -an -crf 0 \
+      "$basename".mp4
+  }
+  # aria2c wrapper
+  if command -v aria2c >/dev/null 2>&1; then
+    function a2c() {
+      aria2c --max-connection-per-server=4 \
+        --min-split-size=5M \
+        --continue \
+        "$@"
+    }
+  fi
+  # yt-dlp wrapper
+  if command -v yt-dlp >/dev/null 2>&1; then
+    function yd() {
       local url="$1"
       shift
       if [ -z "$url" ]; then
@@ -87,65 +120,6 @@ if command -v yt-dlp >/dev/null 2>&1; then
         $url \
         "$@"
       return 0
-    }
-  fi
-fi
-
-# webm to mp4
-function webm2mp4() {
-  local filename="$1"
-  local basename="${filename%.*}"
-  ffmpeg -i "$filename" \
-    -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" \
-    -y -an -crf 0 \
-    "$basename".mp4
-}
-
-# pandoc wrapper
-if command -v pandoc >/dev/null 2>&1; then
-  if command -v typst >/dev/null 2>&1; then
-    cv2pdf() {
-      local ftype="$1"
-      shift
-      local fname="$1"
-      shift
-      local oname="${fname%.*}.pdf"
-      pandoc -f "$ftype" -t "pdf" "$fname" \
-        -o "$oname" \
-        --pdf-engine=typst \
-        --metadata-file="$HOME/projects/config.d/others/pmeta.yaml"
-    }
-  fi
-fi
-
-if command -v python >/dev/null 2>&1; then
-  create-venv() {
-    local vname="$(basename $PWD)"
-    if [[ -n "$1" ]]; then
-      vname="$1"
-    fi
-    python -m venv .venv --prompt "$vname"
-  }
-
-  activate-venv() {
-    local dname=".venv"
-    if [[ -n "$1" ]]; then
-      dname="$1"
-    fi
-    if [[ -d "$PWD/$dname" ]] && [[ -f "$PWD/$dname/bin/activate" ]]; then
-      source "$PWD/$dname/bin/activate"
-    fi
-  }
-fi
-
-# aria2c wrapper
-if command -v aria2c >/dev/null 2>&1; then
-  if command -v ffmpeg >/dev/null 2>&1; then
-    a2c() {
-      aria2c --max-connection-per-server=4 \
-        --min-split-size=5M \
-        --continue \
-        "$@"
     }
   fi
 fi

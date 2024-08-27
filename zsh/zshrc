@@ -46,26 +46,43 @@ dailyup() {
   fi
 }
 
-# pandoc wrapper
-if command -v pandoc >/dev/null 2>&1; then
-  if command -v typst >/dev/null 2>&1; then
-    cv2pdf() {
-      local ftype="$1"
-      shift
-      local fname="$1"
-      shift
-      local oname="${fname%.*}.pdf"
-      pandoc -f "$ftype" -t "pdf" "$fname" \
-        -o "$oname" \
-        --pdf-engine=typst \
-        --metadata-file="$HOME/projects/config.d/others/pmeta.yaml"
-    }
-  fi
+if command -v defaults >/dev/null 2>&1; then
+  reload-dock() {
+    defaults write com.apple.dock ResetLaunchPad -bool true && killall Dock
+  }
 fi
 
-# yt-dlp wrapper
-if command -v yt-dlp >/dev/null 2>&1; then
-  if command -v ffmpeg >/dev/null 2>&1; then
+if command -v python >/dev/null 2>&1; then
+  create-venv() {
+    local vname="$(basename $PWD)"
+    if [[ -n "$1" ]]; then
+      vname="$1"
+    fi
+    python -m venv .venv --prompt "$vname"
+  }
+  activate-venv() {
+    local dname=".venv"
+    if [[ -n "$1" ]]; then
+      dname="$1"
+    fi
+    if [[ -d "$PWD/$dname" ]] && [[ -f "$PWD/$dname/bin/activate" ]]; then
+      source "$PWD/$dname/bin/activate"
+    fi
+  }
+fi
+
+if command -v ffmpeg >/dev/null 2>&1; then
+  # aria2c wrapper
+  if command -v aria2c >/dev/null 2>&1; then
+    a2c() {
+      aria2c --max-connection-per-server=4 \
+        --min-split-size=5M \
+        --continue \
+        "$@"
+    }
+  fi
+  # yt-dlp wrapper
+  if command -v yt-dlp >/dev/null 2>&1; then
     yd() {
       local url="$1"
       shift
@@ -83,43 +100,6 @@ if command -v yt-dlp >/dev/null 2>&1; then
         $url \
         "$@"
       return 0
-    }
-  fi
-fi
-
-if command -v defaults >/dev/null 2>&1; then
-  reload-dock() {
-    defaults write com.apple.dock ResetLaunchPad -bool true && killall Dock
-  }
-fi
-
-if command -v python >/dev/null 2>&1; then
-  create-venv() {
-    local vname="$(basename $PWD)"
-    if [[ -n "$1" ]]; then
-      vname="$1"
-    fi
-    python -m venv .venv --prompt "$vname"
-  }
-
-  activate-venv() {
-    local dname=".venv"
-    if [[ -n "$1" ]]; then
-      dname="$1"
-    fi
-    if [[ -d "$PWD/$dname" ]] && [[ -f "$PWD/$dname/bin/activate" ]]; then
-      source "$PWD/$dname/bin/activate"
-    fi
-  }
-fi
-
-if command -v aria2c >/dev/null 2>&1; then
-  if command -v ffmpeg >/dev/null 2>&1; then
-    a2c() {
-      aria2c --max-connection-per-server=4 \
-        --min-split-size=5M \
-        --continue \
-        "$@"
     }
   fi
 fi

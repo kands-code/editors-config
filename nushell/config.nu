@@ -63,37 +63,6 @@ def dailyup [] {
   }
 }
 
-# pandoc wrapper
-def cv2pdf [
-  file_name: string # file name to convert
-  file_type: string = "markdown", # file type from
-] {
-  if (not (which pandoc | is-empty)
-    and not (which lualatex | is-empty)) {
-    let output_name = ($file_name
-      | path basename
-      | split row "."
-      | get 0
-      | { parent: $env.PWD, stem: $in, extension: "pdf" }
-      | path join
-    )
-    (^pandoc -f $file_type 
-      -t "pdf"
-      $file_name
-      -o $output_name
-      "--pdf-engine=lualatex"
-      $"--metadata-file=($nu.home-path
-        | path join "projects"
-        | path join "config.d"
-        | path join "others"
-        | path join "pmeta.yaml"
-      )"
-    )
-  } else {
-      print "nothing here"
-  }
-}
-
 # yt-dlp wrapper
 def yd [
     url: string, # url for downloading
