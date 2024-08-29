@@ -65,10 +65,10 @@ export RUST_BACKTRACE=full
 
 # for sagemath
 SAGE_VERSION="10.4"
-DOT_SAGE="$XDG_STATE_HOME/sage"
-SAGE_LOCAL="$paths[sdk]/sage"
-SAGE_ROOT="$SAGE_LOCAL/sage-$SAGE_VERSION"
-SAGE_STARTUP_FILE="$DOT_SAGE/init.sage"
+export DOT_SAGE="$XDG_STATE_HOME/sage"
+export SAGE_LOCAL="$paths[sdk]/sage"
+export SAGE_ROOT="$SAGE_LOCAL/sage-$SAGE_VERSION"
+export SAGE_STARTUP_FILE="$DOT_SAGE/init.sage"
 
 # compose path
 paths[homebrew]="/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
