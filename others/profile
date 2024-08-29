@@ -2,10 +2,9 @@
 
 # path
 allPath="$HOME/.local/bin"               # user bin
-allPath+=":$XDG_SDK_HOME/sage/bin"       # sagemath
 allPath+=":$HOME/.local/share/cabal/bin" # haskell
 allPath+=":$HOME/.local/sdk/cargo/bin"   # rust
-allPath+=":$PATH"
+allPath+=":$PATH"                        # default PATH
 export PATH="$allPath"
 
 # ghcup-env
