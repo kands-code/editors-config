@@ -63,6 +63,11 @@ export RUSTUP_HOME="$paths[sdk]/rustup"
 export CARGO_HOME="$paths[sdk]/cargo"
 export RUST_BACKTRACE=full
 
+# for sagemath
+DOT_SAGE="$XDG_STATE_HOME/sage"
+SAGE_LOCAL="$paths[sdk]/sage"
+SAGE_STARTUP_FILE="$DOT_SAGE/init.sage"
+
 # compose path
 paths[homebrew]="/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
 paths[path]="$RUSTUP_BIN"                              # for rustup itself
