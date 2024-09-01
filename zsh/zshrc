@@ -73,17 +73,19 @@ fi
 
 if command -v ffmpeg >/dev/null 2>&1; then
   # aria2c wrapper
-  if command -v aria2c >/dev/null 2>&1; then
-    a2c() {
+  a2c() {
+    if command -v aria2c >/dev/null 2>&1; then
       aria2c --max-connection-per-server=4 \
         --min-split-size=5M \
         --continue \
         "$@"
-    }
-  fi
+    else
+      echo "need aria2c..."
+    fi
+  }
   # yt-dlp wrapper
-  if command -v yt-dlp >/dev/null 2>&1; then
-    yd() {
+  yd() {
+    if command -v yt-dlp >/dev/null 2>&1; then
       local url="$1"
       shift
       if [ -z "$url" ]; then
@@ -100,6 +102,8 @@ if command -v ffmpeg >/dev/null 2>&1; then
         $url \
         "$@"
       return 0
-    }
-  fi
+    else
+      echo "need yt-dlp..."
+    fi
+  }
 fi
