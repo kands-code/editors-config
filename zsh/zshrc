@@ -52,7 +52,7 @@ if command -v defaults >/dev/null 2>&1; then
   }
 fi
 
-if command -v python >/dev/null 2>&1; then
+if command -v python3 >/dev/null 2>&1; then
   create-venv() {
     local vname="$(basename $PWD)"
     if [[ -n "$1" ]]; then

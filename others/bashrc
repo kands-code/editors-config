@@ -62,7 +62,7 @@ if command -v stack >/dev/null 2>&1; then
   eval "$(stack --bash-completion-script stack)"
 fi
 
-if command -v python >/dev/null 2>&1; then
+if command -v python3 >/dev/null 2>&1; then
   function create-venv() {
     local vname="$(basename $PWD)"
     if [[ -n "$1" ]]; then
