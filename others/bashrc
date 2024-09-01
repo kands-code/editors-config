@@ -68,7 +68,7 @@ if command -v python3 >/dev/null 2>&1; then
     if [[ -n "$1" ]]; then
       vname="$1"
     fi
-    python -m venv .venv --prompt "$vname"
+    python3 -m venv .venv --prompt "$vname"
   }
   function activate-venv() {
     local dname=".venv"
