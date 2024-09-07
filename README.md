@@ -132,7 +132,7 @@ ln -s "<path to project>"/zsh/zshrc ~/.config/zsh/.zshrc
 ln -s "<path to project>"/zsh/zfunc ~/.config/zsh/zfunc
 # for ssh config
 mkdir -p ~/.ssh
-ln -s "<path to project>"/zsh/ssh.conf ~/.ssh/config
+ln -s "<path to project>"/others/ssh.conf ~/.ssh/config
 ```
 
 ## nushell
