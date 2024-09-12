@@ -33,8 +33,7 @@ dailyup() {
       cargo install --all-features \
         mdbook \
         mdbook-katex \
-        mdbook-toc \
-        pest-language-server
+        mdbook-toc
     fi
   fi
   # haskell
