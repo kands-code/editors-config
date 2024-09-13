@@ -63,12 +63,6 @@ export RUSTUP_HOME="$paths[sdk]/rustup"
 export CARGO_HOME="$paths[sdk]/cargo"
 export RUST_BACKTRACE=full
 
-# for sagemath
-export DOT_SAGE="$XDG_STATE_HOME/sage"
-export SAGE_LOCAL="$paths[sdk]/sage"
-export SAGE_ROOT="$SAGE_LOCAL/sage-src"
-export SAGE_STARTUP_FILE="$DOT_SAGE/init.sage"
-
 # for julia
 export JULIA_DEPOT_PATH="$paths[sdk]/julia:$JULIA_DEPOT_PATH"
 export JULIAUP_DEPOT_PATH="$paths[sdk]/julia"
