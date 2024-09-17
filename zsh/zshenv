@@ -55,7 +55,7 @@ export PYTHONSTARTUP="$paths[config]/pip/pyrc"
 export PYLINTHOME="$XDG_STATE_HOME/pylint"
 export MPLCONFIGDIR="$XDG_STATE_HOME/matplotlib"
 #? rye
-export RYE_HOME="$XDG_SDK_HOME/rye"
+export RYE_HOME="$paths[sdk]/rye"
 
 # for rust
 export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
