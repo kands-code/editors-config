@@ -61,6 +61,11 @@ if command -v stack >/dev/null 2>&1; then
   eval "$(stack --bash-completion-script stack)"
 fi
 
+# rye
+if [[ -n "$RYE_HOME" ]] && [[ -f "$RYE_HOME/env" ]]; then
+  source "$RYE_HOME/env"
+fi
+
 if command -v python3 >/dev/null 2>&1; then
   function create-venv() {
     local vname="$(basename $PWD)"

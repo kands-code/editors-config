@@ -53,7 +53,7 @@ export IPYTHONDIR="$JUPYTER_DATA_DIR"
 export JUPYTER_CONFIG_DIR="$JUPYTER_DATA_DIR"
 export PYTHONSTARTUP="$paths[config]/pip/pyrc"
 export PYLINTHOME="$XDG_STATE_HOME/pylint"
-export MPLCONFIGDIR="$paths[config]/matplotlib"
+export MPLCONFIGDIR="$XDG_STATE_HOME/matplotlib"
 
 # for rust
 export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
