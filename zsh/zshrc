@@ -45,12 +45,19 @@ dailyup() {
   fi
 }
 
+# reload dock
 if command -v defaults >/dev/null 2>&1; then
   reload-dock() {
     defaults write com.apple.dock ResetLaunchPad -bool true && killall Dock
   }
 fi
 
+# rye
+if [[ -n "$RYE_HOME" ]] && [[ -f "$RYE_HOME/env" ]]; then
+  source "$RYE_HOME/env"
+fi
+
+# python venv
 if command -v python3 >/dev/null 2>&1; then
   create-venv() {
     local vname="$(basename $PWD)"
@@ -71,6 +78,15 @@ if command -v python3 >/dev/null 2>&1; then
 fi
 
 if command -v ffmpeg >/dev/null 2>&1; then
+  # convert to mp4
+  conv2mp4() {
+    local filename="$1"
+    local basename="${filename%.*}"
+    ffmpeg -i "$filename" \
+      -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" \
+      -y -an -crf 0 \
+      "$basename".mp4
+  }
   # aria2c wrapper
   a2c() {
     if command -v aria2c >/dev/null 2>&1; then

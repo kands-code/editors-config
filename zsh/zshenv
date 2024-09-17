@@ -54,6 +54,8 @@ export JUPYTER_CONFIG_DIR="$JUPYTER_DATA_DIR"
 export PYTHONSTARTUP="$paths[config]/pip/pyrc"
 export PYLINTHOME="$XDG_STATE_HOME/pylint"
 export MPLCONFIGDIR="$XDG_STATE_HOME/matplotlib"
+#? rye
+export RYE_HOME="$XDG_SDK_HOME/rye"
 
 # for rust
 export RUSTUP_DIST_SERVER="https://mirrors.ustc.edu.cn/rust-static"
@@ -63,16 +65,11 @@ export RUSTUP_HOME="$paths[sdk]/rustup"
 export CARGO_HOME="$paths[sdk]/cargo"
 export RUST_BACKTRACE=full
 
-# for julia
-export JULIA_DEPOT_PATH="$paths[sdk]/julia:$JULIA_DEPOT_PATH"
-export JULIAUP_DEPOT_PATH="$paths[sdk]/julia"
-
 # compose path
 paths[homebrew]="/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
 paths[path]="$RUSTUP_BIN"                              # for rustup itself
 paths[path]+=":$RUSTUP_HOME/bin"                       # for rustup
 paths[path]+=":$CARGO_HOME/bin"                        # for rust cargo
-paths[path]+=":$HOME/.local/sdk/julia/bin"             # for julia
 paths[path]+=":$HOME/.local/bin"                       # for user local
 paths[path]+=":$HOMEBREW_PREFIX/opt/postgresql@16/bin" # for postgresql
 export PATH="$paths[path]":"$PATH"                     # user path before system path

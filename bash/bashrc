@@ -56,16 +56,12 @@ export PS0='\[\033[0;36m\]Out[\#]:= \[\033[0m\]\n'
 export PS1='[\u@\h \w \A]-\[$(exitstatus)\]-\[$(usersymbol)\]\n\[\033[0;33m\]In[\#]:= \[\033[0m\]'
 export PS2=' ~> '
 
-# stack auto complete
-if command -v stack >/dev/null 2>&1; then
-  eval "$(stack --bash-completion-script stack)"
-fi
-
 # rye
 if [[ -n "$RYE_HOME" ]] && [[ -f "$RYE_HOME/env" ]]; then
   source "$RYE_HOME/env"
 fi
 
+# python venv
 if command -v python3 >/dev/null 2>&1; then
   function create-venv() {
     local vname="$(basename $PWD)"
@@ -87,8 +83,8 @@ fi
 
 # video convert
 if command -v ffmpeg >/dev/null 2>&1; then
-  # webm to mp4
-  function webm2mp4() {
+  # convert to mp4
+  function conv2mp4() {
     local filename="$1"
     local basename="${filename%.*}"
     ffmpeg -i "$filename" \
