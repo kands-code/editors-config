@@ -5,8 +5,8 @@ paths[data]="$HOME/.local/share"
 paths[config]="$HOME/.config"
 paths[cache]="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
-export EDITOR=pico
-export VISUAL=code
+export EDITOR=nano
+export VISUAL=nano
 
 # for zsh self
 export ZDOTDIR="$paths[config]/zsh"
