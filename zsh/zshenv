@@ -15,8 +15,6 @@ export CLICOLOR=true
 export LSCOLORS="exfxcxdxbxegedabagacad"
 
 # for utils
-export PSQLRC="$paths[config]/psqlrc"
-export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
 export HOMEBREW_PREFIX="/opt/homebrew"
 export HOMEBREW_CELLAR="$HOMEBREW_PREFIX/Cellar"
 export HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX"
@@ -25,14 +23,28 @@ export MANPATH="$MANPATH:$HOMEBREW_PREFIX/share/man"
 export INFOPATH="/usr/share/info:/usr/local/share/info"
 export INFOPATH="$INFOPATH:$HOMEBREW_PREFIX/share/info"
 
+# for less
+export LESSKEY="$paths[config]/less/lesskey"
+export LESSHISTFILE="$XDG_STATE_HOME/less_history"
+
+# for sql
+export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
+export PSQLRC="$paths[config]/psqlrc"
+export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
+export PGPASSFILE="$XDG_CONFIG_HOME/postgres/pgpass"
+export PGSERVICEFILE="$XDG_CONFIG_HOME/postgres/pg_service.conf"
+export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
+
 # for nodejs
 export NPM_CONFIG_USERCONFIG="$paths[config]/npm/npmrc"
 export NODE_REPL_HISTORY="$XDG_STATE_HOME/npm_history"
 export NODE_PATH="/opt/homebrew/lib/node_modules:$paths[data]/npm/lib/node_modules/"
 
-# for less
-export LESSKEY="$paths[config]/less/lesskey"
-export LESSHISTFILE="$XDG_STATE_HOME/less_history"
+# for rust
+export RUSTUP_BIN="$HOMEBREW_PREFIX/opt/rustup/bin" # homebrew only
+export RUSTUP_HOME="$paths[sdk]/rustup"
+export CARGO_HOME="$paths[sdk]/cargo"
+export RUST_BACKTRACE=full
 
 # for haskell
 export integer STACK_XDG=1
@@ -45,17 +57,19 @@ export AGDA_DIR="$paths[sdk]/agda"
 export JUPYTER_DATA_DIR="$paths[config]/jupyter"
 export IPYTHONDIR="$JUPYTER_DATA_DIR"
 export JUPYTER_CONFIG_DIR="$JUPYTER_DATA_DIR"
-export PYTHONSTARTUP="$paths[config]/pip/pyrc"
-export PYLINTHOME="$XDG_STATE_HOME/pylint"
+export PYTHONSTARTUP="$paths[config]/pip/startup.py"
 export MPLCONFIGDIR="$XDG_STATE_HOME/matplotlib"
-#? rye
-export RYE_HOME="$paths[sdk]/rye"
 
-# for rust
-export RUSTUP_BIN="$HOMEBREW_PREFIX/opt/rustup/bin"
-export RUSTUP_HOME="$paths[sdk]/rustup"
-export CARGO_HOME="$paths[sdk]/cargo"
-export RUST_BACKTRACE=full
+#? rye
+RYE_HOME="$paths[sdk]/rye"
+#? latex
+TEXMFHOME="$paths[data]/texmf"
+TEXMFVAR="$paths[cache]/texlive/texmf-var"
+TEXMFCONFIG="$paths[config]/texlive/texmf-config"
+#? ocaml
+OPAMROOT="$paths[sdk]/opam"
+#? wolfram
+WOLFRAM_USERBASE="$XDG_STATE_HOME/wolfram"
 
 # compose path
 paths[homebrew]="/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
