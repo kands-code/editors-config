@@ -10,7 +10,7 @@ This repository stores all the configurations I am using.
 ln -sf "<path-to-project>/bash/bashrc" "$HOME/.bashrc"
 ln -sf "<path-to-project>/bash/profile" "$HOME/.profile"
 mkdir -p "$HOME/.local/share/bash"
-ln -sf ""<path-to-project>/bash/completions" "$HOME/.local/share/bash/completions"
+ln -sf "<path-to-project>/bash/completions" "$HOME/.local/share/bash/completions"
 ```
 
 ## environment.d
