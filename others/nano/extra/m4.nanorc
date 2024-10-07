@@ -1,0 +1,34 @@
+## M4 Language
+
+syntax "m4" "\.m4$"
+header "-\*-.*\<M4\*-"
+magic "^(m4|M4) (source|program)"
+comment "#"
+
+# Macro names.
+color yellow "[A-Z_][0-9A-Z_]*"
+
+# Keywords.
+color brightcyan "\<(define|undef|defn|include|macro|text|divert)\>"
+color brightcyan "\<(change|push|pop|foreach|ifdef|ifndef|if|ifelse|else|endif)\>"
+color brightcyan "\<(trace|traceoff|traceon|traceall|traceignore|tracef)\>"
+
+# Numbers.
+color brightred "[0-9]*(\.)?[0-9]*"
+
+# Comments.
+color brightblue "#(|//.)*"
+color brightblue "dnl([^']|//.)*"
+
+# Quoting inputs.
+color green "(``)([^('')]|\\.)*''"
+color green "`([^']|\\.)*'|`'"
+
+# Parentheses.
+color brightwhite "[(){}]" "\[" "\]"
+
+# Reminders.
+color brightwhite,yellow "\<(FIXME|TODO|XXX)\>"
+
+# Trailing whitespace.
+color ,green "[[:space:]]+$"
