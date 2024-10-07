@@ -21,6 +21,7 @@ function dailyup() {
     rustup update
     if [ "$?" = '0' ]; then
       cargo install --all-features \
+        cargo-generate \
         mdbook \
         mdbook-katex \
         mdbook-toc
