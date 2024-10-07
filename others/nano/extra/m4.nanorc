@@ -21,8 +21,8 @@ color brightblue "#(|//.)*"
 color brightblue "dnl([^']|//.)*"
 
 # Quoting inputs.
-color green "(``)([^('')]|\\.)*''"
-color green "`([^']|\\.)*'|`'"
+color green start="``" end="''"
+color green start="`" end="'"
 
 # Parentheses.
 color brightwhite "[(){}]" "\[" "\]"
