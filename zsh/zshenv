@@ -61,15 +61,19 @@ export PYTHONSTARTUP="$paths[config]/pip/startup.py"
 export MPLCONFIGDIR="$XDG_STATE_HOME/matplotlib"
 
 #? rye
-RYE_HOME="$paths[sdk]/rye"
+export RYE_HOME="$paths[sdk]/rye"
 #? latex
-TEXMFHOME="$paths[data]/texmf"
-TEXMFVAR="$paths[cache]/texlive/texmf-var"
-TEXMFCONFIG="$paths[config]/texlive/texmf-config"
+export TEXMFHOME="$paths[data]/texmf"
+export TEXMFVAR="$paths[cache]/texlive/texmf-var"
+export TEXMFCONFIG="$paths[config]/texlive/texmf-config"
 #? ocaml
-OPAMROOT="$paths[sdk]/opam"
+export OPAMROOT="$paths[sdk]/opam"
 #? wolfram
-WOLFRAM_USERBASE="$XDG_STATE_HOME/wolfram"
+export WOLFRAM_USERBASE="$XDG_STATE_HOME/wolfram"
+#? go
+export GOPATH="$paths[sdk]/go"
+export GO111MODULE="on"
+export GOPROXY="https://goproxy.io,direct"
 
 # compose path
 paths[homebrew]="/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
