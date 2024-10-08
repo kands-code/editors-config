@@ -33,7 +33,7 @@ according to the configuration of **zsh** or **bash**.
 
 ```bash
 ln -sf "<path-to-project>/nushell" "$HOME/.config/nushell"
-# 对于 macOS 用户
+# for macOS user
 ln -sf "<path-to-project>/nushell" "$HOME/Library/Application Support/nushell"
 ```
 
@@ -46,7 +46,12 @@ Some miscellaneous configurations.
 Highlighting configuration for **nano** or **pico** editor.
 
 ```bash
-ln -sf "<path-to-project>/others/nano" "$HOME/.config/nano"
+mkdir "$HOME/.config/nano"
+ln -sf "<path-to-project>/others/nano/extra" "$HOME/.config/nano/extra"
+cp "<path-to-project>/others/nano/nanorc" "$HOME/.config/nano/nanorc"
+# for macOS user
+# need modify config to macOS configure
+nano ~/.config/nano/nanorc
 ```
 
 ### fastfetch
