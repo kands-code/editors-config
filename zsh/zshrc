@@ -39,12 +39,17 @@ dailyup() {
         tauri-cli
     fi
   fi
-  # haskell
-  if command -v cabal >/dev/null 2>&1; then
-    cabal update
-    if command -v stack >/dev/null 2>&1; then
-      stack update
-    fi
+  #? haskell
+  # if command -v cabal >/dev/null 2>&1; then
+  #   cabal update
+  #   if command -v stack >/dev/null 2>&1; then
+  #     stack update
+  #   fi
+  # fi
+  #? opam
+  if command -v opam >/dev/null 2>&1; then
+    opam update
+    opam upgrade
   fi
 }
 
@@ -55,7 +60,11 @@ if command -v defaults >/dev/null 2>&1; then
   }
 fi
 
-# rye
+#? opam
+if command -v opam >/dev/null 2>&1; then
+  eval "$(opam env)"
+fi
+#? rye
 if [[ -n "$RYE_HOME" ]] && [[ -f "$RYE_HOME/env" ]]; then
   source "$RYE_HOME/env"
 fi

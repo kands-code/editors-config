@@ -29,10 +29,15 @@ function dailyup() {
         tauri-cli
     fi
   fi
-  # haskell
-  if command -v ghcup >/dev/null 2>&1; then
-    cabal update
-    stack update
+  #? haskell
+  # if command -v ghcup >/dev/null 2>&1; then
+  #   cabal update
+  #   stack update
+  # fi
+  #? opam
+  if command -v opam >/dev/null 2>&1; then
+    opam update
+    opam upgrade
   fi
 }
 
@@ -59,7 +64,11 @@ export PS0='\[\033[0;36m\]Out[\#]:= \[\033[0m\]\n'
 export PS1='[\u@\h \w \A]-\[$(exitstatus)\]-\[$(usersymbol)\]\n\[\033[0;33m\]In[\#]:= \[\033[0m\]'
 export PS2=' ~> '
 
-# rye
+#? opam
+if command -v opam >/dev/null 2>&1; then
+  eval "$(opam env)"
+fi
+#? rye
 if [[ -n "$RYE_HOME" ]] && [[ -f "$RYE_HOME/env" ]]; then
   source "$RYE_HOME/env"
 fi
