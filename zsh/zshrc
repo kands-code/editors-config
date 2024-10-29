@@ -61,8 +61,12 @@ if command -v defaults >/dev/null 2>&1; then
 fi
 
 #? opam
+export OPAM_DEV_SWITCH="dev"
 if command -v opam >/dev/null 2>&1; then
   eval "$(opam env)"
+  if opam switch list | grep "$OPAM_DEV_SWITCH" >/dev/null 2>&1; then
+    opam switch set dev
+  fi
 fi
 #? rye
 if [[ -n "$RYE_HOME" ]] && [[ -f "$RYE_HOME/env" ]]; then
