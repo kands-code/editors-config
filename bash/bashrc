@@ -29,16 +29,6 @@ function dailyup() {
         tauri-cli
     fi
   fi
-  #? haskell
-  # if command -v ghcup >/dev/null 2>&1; then
-  #   cabal update
-  #   stack update
-  # fi
-  #? opam
-  if command -v opam >/dev/null 2>&1; then
-    opam update
-    opam upgrade
-  fi
 }
 
 # PS1='[\u@\h \W]\$ '
@@ -65,12 +55,46 @@ export PS1='[\u@\h \w \A]-\[$(exitstatus)\]-\[$(usersymbol)\]\n\[\033[0;33m\]In[
 export PS2=' ~> '
 
 #? opam
-export OPAM_DEV_SWITCH="dev"
 if command -v opam >/dev/null 2>&1; then
+  export OPAM_DEV_SWITCH="dev"
   eval "$(opam env)"
-  if opam switch list | grep "$OPAM_DEV_SWITCH" >/dev/null 2>&1; then
-    opam switch set dev
-  fi
+  activate-switch() {
+    if [[ "$#" -eq "1" ]]; then
+      if opam switch list | grep "$1" >/dev/null 2>&1; then
+        opam switch set $1
+      else
+        echo "=> swithc ($1) not found"
+      fi
+    else
+      echo "usage: activate-switch [switch name]"
+    fi
+  }
+  create-switch() {
+    if [[ "$#" -le "1" ]]; then
+      local switchname="$(basename $PWD)"
+      local switchfile="switch-state.txt"
+      if [[ -n "$1" ]]; then
+        switchname="$1"
+      fi
+      if opam switch list | grep "$switchname" >/dev/null 2>&1; then
+        opam switch set "$switchname"
+      else
+        opam switch export "$switchfile"
+        opam switch create "$switchname" --empty
+        opam switch import "$switchfile"
+        opam switch set "$switchname"
+        eval $(opam env)
+        if [[ -f "$switchfile" ]]; then
+          rm "$switchfile"
+        fi
+      fi
+    else
+      echo "usage: create-switch [switch name]"
+      return 1
+    fi
+  }
+  # defaultly activate dev switch
+  activate-switch $OPAM_DEV_SWITCH
 fi
 #? rye
 if [[ -n "$RYE_HOME" ]] && [[ -f "$RYE_HOME/env" ]]; then
@@ -79,20 +103,24 @@ fi
 
 # python venv
 if command -v python3 >/dev/null 2>&1; then
-  function create-venv() {
+  create-venv() {
     local vname="$(basename $PWD)"
     if [[ -n "$1" ]]; then
       vname="$1"
     fi
     python3 -m venv .venv --prompt "$vname"
   }
-  function activate-venv() {
+  activate-venv() {
     local dname=".venv"
     if [[ -n "$1" ]]; then
       dname="$1"
-    fi
-    if [[ -d "$PWD/$dname" ]] && [[ -f "$PWD/$dname/bin/activate" ]]; then
-      source "$PWD/$dname/bin/activate"
+      if [[ -d "$PWD/$dname" ]] && [[ -f "$PWD/$dname/bin/activate" ]]; then
+        source "$PWD/$dname/bin/activate"
+      fi
+      return 0
+    else
+      echo "usage: activate-venv ([venv folder])"
+      return 1
     fi
   }
 fi
@@ -100,7 +128,7 @@ fi
 # video convert
 if command -v ffmpeg >/dev/null 2>&1; then
   # convert to mp4
-  function conv2mp4() {
+  conv2mp4() {
     local filename="$1"
     local basename="${filename%.*}"
     ffmpeg -i "$filename" \
@@ -109,23 +137,21 @@ if command -v ffmpeg >/dev/null 2>&1; then
       "$basename".mp4
   }
   # aria2c wrapper
-  function a2c() {
+  a2c() {
     if command -v aria2c >/dev/null 2>&1; then
       aria2c --max-connection-per-server=4 \
         --min-split-size=5M \
         --continue \
         "$@"
-    else
-      echo "need aria2c..."
     fi
   }
   # yt-dlp wrapper
-  function yd() {
+  yd() {
     if command -v yt-dlp >/dev/null 2>&1; then
       local url="$1"
       shift
       if [ -z "$url" ]; then
-        echo "please give a url"
+        echo "usage: yd [url] (...[yt-dlp arguments])"
         return 1
       fi
       yt-dlp -o "%(uploader_id)s/%(playlist_title)s/p%(playlist_index)03d-%(title)s.%(ext)s" \
@@ -138,8 +164,6 @@ if command -v ffmpeg >/dev/null 2>&1; then
         $url \
         "$@"
       return 0
-    else
-      echo "need yt-dlp..."
     fi
   }
 fi
