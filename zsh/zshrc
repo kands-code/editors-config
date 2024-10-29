@@ -108,13 +108,9 @@ if command -v python3 >/dev/null 2>&1; then
     local dname=".venv"
     if [[ -n "$1" ]]; then
       dname="$1"
-      if [[ -d "$PWD/$dname" ]] && [[ -f "$PWD/$dname/bin/activate" ]]; then
-        source "$PWD/$dname/bin/activate"
-      fi
-      return 0
-    else
-      echo "usage: activate-venv ([venv folder])"
-      return 1
+    fi
+    if [[ -d "$PWD/$dname" ]] && [[ -f "$PWD/$dname/bin/activate" ]]; then
+      source "$PWD/$dname/bin/activate"
     fi
   }
 fi
