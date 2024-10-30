@@ -54,48 +54,6 @@ export PS0='\[\033[0;36m\]Out[\#]:= \[\033[0m\]\n'
 export PS1='[\u@\h \w \A]-\[$(exitstatus)\]-\[$(usersymbol)\]\n\[\033[0;33m\]In[\#]:= \[\033[0m\]'
 export PS2=' ~> '
 
-#? opam
-if command -v opam >/dev/null 2>&1; then
-  export OPAM_DEV_SWITCH="dev"
-  eval "$(opam env)"
-  activate-switch() {
-    if [[ "$#" -eq "1" ]]; then
-      if opam switch list | grep "$1" >/dev/null 2>&1; then
-        opam switch set $1
-      else
-        echo "=> swithc ($1) not found"
-      fi
-    else
-      echo "usage: activate-switch [switch name]"
-    fi
-  }
-  create-switch() {
-    if [[ "$#" -le "1" ]]; then
-      local switchname="$(basename $PWD)"
-      local switchfile="switch-state.txt"
-      if [[ -n "$1" ]]; then
-        switchname="$1"
-      fi
-      if opam switch list | grep "$switchname" >/dev/null 2>&1; then
-        opam switch set "$switchname"
-      else
-        opam switch export "$switchfile"
-        opam switch create "$switchname" --empty
-        opam switch import "$switchfile"
-        opam switch set "$switchname"
-        eval $(opam env)
-        if [[ -f "$switchfile" ]]; then
-          rm "$switchfile"
-        fi
-      fi
-    else
-      echo "usage: create-switch [switch name]"
-      return 1
-    fi
-  }
-  # defaultly activate dev switch
-  activate-switch $OPAM_DEV_SWITCH
-fi
 #? rye
 if [[ -n "$RYE_HOME" ]] && [[ -f "$RYE_HOME/env" ]]; then
   source "$RYE_HOME/env"

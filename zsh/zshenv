@@ -57,23 +57,23 @@ export MPLCONFIGDIR="$XDG_STATE_HOME/matplotlib"
 #? rye
 export RYE_HOME="$paths[sdk]/rye"
 #? latex
-# export TEXMFHOME="$paths[data]/texmf"
-# export TEXMFVAR="$paths[cache]/texlive/texmf-var"
-# export TEXMFCONFIG="$paths[config]/texlive/texmf-config"
+export TEXMFHOME="$paths[data]/texmf"
+export TEXMFVAR="$paths[cache]/texlive/texmf-var"
+export TEXMFCONFIG="$paths[config]/texlive/texmf-config"
+#? haskell
+export integer STACK_XDG=1
+export integer GHCUP_USE_XDG_DIRS=1
+export CABAL_DIR="$paths[data]/cabal"
+export CABAL_CONFIG="$paths[config]/cabal/config"
+export AGDA_DIR="$paths[sdk]/agda"
 #? ocaml
 export OPAMROOT="$paths[sdk]/opam"
-#? haskell
-# export integer STACK_XDG=1
-# export integer GHCUP_USE_XDG_DIRS=1
-# export CABAL_DIR="$paths[data]/cabal"
-# export CABAL_CONFIG="$paths[config]/cabal/config"
-# export AGDA_DIR="$paths[sdk]/agda"
 #? wolfram
-# export WOLFRAM_USERBASE="$XDG_STATE_HOME/wolfram"
+export WOLFRAM_USERBASE="$XDG_STATE_HOME/wolfram"
 #? go
-# export GOPATH="$paths[sdk]/go"
-# export GO111MODULE="on"
-# export GOPROXY="https://goproxy.io,direct"
+export GOPATH="$paths[sdk]/go"
+export GO111MODULE="on"
+export GOPROXY="https://goproxy.io,direct"
 
 # compose path
 paths[homebrew]="/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
