@@ -26,7 +26,8 @@ function dailyup() {
         mdbook \
         mdbook-katex \
         mdbook-toc \
-        tauri-cli
+        tauri-cli \
+        deno
     fi
   fi
 }
