@@ -4,6 +4,7 @@
 allPath="$HOME/.local/bin"               # user bin
 allPath+=":$HOME/.local/share/cabal/bin" # haskell
 allPath+=":$HOME/.local/sdk/cargo/bin"   # rust
+allPath+=":$HOME/.local/sdk/deno/bin"    # deno
 allPath+=":$PATH"                        # default PATH
 export PATH="$allPath"
 

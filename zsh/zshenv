@@ -5,6 +5,7 @@ paths[data]="$HOME/.local/share"
 paths[config]="$HOME/.config"
 paths[cache]="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_USER_BIN="$HOME/.local/bin"
 export EDITOR=nano
 export VISUAL=nano
 
@@ -40,6 +41,7 @@ export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
 export NPM_CONFIG_USERCONFIG="$paths[config]/npm/npmrc"
 export NODE_REPL_HISTORY="$XDG_STATE_HOME/npm_history"
 export NODE_PATH="/opt/homebrew/lib/node_modules:$paths[data]/npm/lib/node_modules/"
+export DENO_INSTALL="$paths[sdk]/deno"
 
 # for rust
 export RUSTUP_BIN="$HOMEBREW_PREFIX/opt/rustup/bin" # homebrew only
@@ -80,6 +82,7 @@ paths[homebrew]="/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
 paths[path]="$RUSTUP_BIN"                              # for rustup itself
 paths[path]+=":$RUSTUP_HOME/bin"                       # for rustup
 paths[path]+=":$CARGO_HOME/bin"                        # for rust cargo
-paths[path]+=":$HOME/.local/bin"                       # for user local
+paths[path]+=":$DENO_INSTALL/bin"                      # for rust deno
+paths[path]+=":$XDG_USER_BIN"                          # for user local
 paths[path]+=":$HOMEBREW_PREFIX/opt/postgresql@16/bin" # for postgresql
 export PATH="$paths[path]":"$PATH"                     # user path before system path
