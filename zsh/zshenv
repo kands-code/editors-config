@@ -70,6 +70,9 @@ export CABAL_CONFIG="$paths[config]/cabal/config"
 export AGDA_DIR="$paths[sdk]/agda"
 #? ocaml
 export OPAMROOT="$paths[sdk]/opam"
+#? Elixir
+MIX_HOME="$paths[sdk]/elixir/mix"
+HEX_HOME="$paths[sdk]/elixir/hex"
 #? wolfram
 export WOLFRAM_USERBASE="$XDG_STATE_HOME/wolfram"
 #? go
