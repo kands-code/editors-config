@@ -5,13 +5,14 @@ allPath="$HOME/.local/bin"               # user bin
 allPath+=":$HOME/.local/share/cabal/bin" # haskell
 allPath+=":$HOME/.local/sdk/cargo/bin"   # rust
 allPath+=":$HOME/.local/sdk/deno/bin"    # deno
+allPath+=":$HOME/.local/sdk/nimble/bin"  # nimble
 allPath+=":$PATH"                        # default PATH
 export PATH="$allPath"
 
 # ghcup-env
 [ -f "/home/kands/.local/share/ghcup/env" ] && source "/home/kands/.local/share/ghcup/env"
 
-## use en_US.UTF-8 as tty LANG
+# try use en_US.UTF-8 as tty LANG
 if [[ "$XDG_SESSION_TYPE" == "tty" ]]; then
   # systemd environment variables
   if [[ -f "/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator" ]]; then
