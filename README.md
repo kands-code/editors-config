@@ -56,14 +56,6 @@ cp "<path-to-project>/others/nano/nanorc" "$HOME/.config/nano/nanorc"
 nano ~/.config/nano/nanorc
 ```
 
-### nimble
-
-Nimble configure files.
-
-```bash
-ln -s "<path-to-project>/others/nimble" "$HOME/.config/nimble"
-```
-
 ### fastfetch
 
 **fastfetch** configuration with simplified information.
