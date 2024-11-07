@@ -53,8 +53,6 @@ export MPLCONFIGDIR="$XDG_STATE_HOME/matplotlib"
 export RYE_HOME="$paths[sdk]/rye"
 #? deno
 export DENO_INSTALL="$paths[sdk]/deno"
-#? nim
-export NIMBLE_DIR="$paths[sdk]/nimble"
 #? haskell
 export integer STACK_XDG=1
 export integer GHCUP_USE_XDG_DIRS=1
@@ -68,7 +66,6 @@ paths[path]="$RUSTUP_BIN"                              # for rustup itself
 paths[path]+=":$RUSTUP_HOME/bin"                       # for rustup
 paths[path]+=":$CARGO_HOME/bin"                        # for rust cargo
 paths[path]+=":$DENO_INSTALL/bin"                      # for deno
-paths[path]+=":$NIMBLE_DIR/bin"                        # for nimble
 paths[path]+=":$XDG_USER_BIN"                          # for user local
 paths[path]+=":$HOMEBREW_PREFIX/opt/postgresql@16/bin" # for postgresql
 export PATH="$paths[path]":"$PATH"                     # user path before system path
