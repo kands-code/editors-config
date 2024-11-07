@@ -41,6 +41,8 @@ ln -sf "<path-to-project>/nushell" "$HOME/Library/Application Support/nushell"
 
 Some miscellaneous configurations.
 
+> `unused.conf` is stored some unused but useful environment variables.
+
 ### nano
 
 Highlighting configuration for **nano** or **pico** editor.
@@ -52,6 +54,14 @@ cp "<path-to-project>/others/nano/nanorc" "$HOME/.config/nano/nanorc"
 # for macOS user
 # need modify config to macOS configure
 nano ~/.config/nano/nanorc
+```
+
+### nimble
+
+Nimble configure files.
+
+```bash
+ln -s "<path-to-project>/others/nimble" "$HOME/.config/nimble"
 ```
 
 ### fastfetch
