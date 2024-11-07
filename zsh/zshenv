@@ -35,13 +35,6 @@ export PSQLRC="$paths[config]/psqlrc"
 export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
 export PGPASSFILE="$XDG_CONFIG_HOME/postgres/pgpass"
 export PGSERVICEFILE="$XDG_CONFIG_HOME/postgres/pg_service.conf"
-export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
-
-# for nodejs
-export NPM_CONFIG_USERCONFIG="$paths[config]/npm/npmrc"
-export NODE_REPL_HISTORY="$XDG_STATE_HOME/npm_history"
-export NODE_PATH="/opt/homebrew/lib/node_modules:$paths[data]/npm/lib/node_modules/"
-export DENO_INSTALL="$paths[sdk]/deno"
 
 # for rust
 export RUSTUP_BIN="$HOMEBREW_PREFIX/opt/rustup/bin" # homebrew only
@@ -58,30 +51,14 @@ export MPLCONFIGDIR="$XDG_STATE_HOME/matplotlib"
 
 #? rye
 export RYE_HOME="$paths[sdk]/rye"
-#? latex
-export TEXMFHOME="$paths[data]/texmf"
-export TEXMFVAR="$paths[cache]/texlive/texmf-var"
-export TEXMFCONFIG="$paths[config]/texlive/texmf-config"
+#? deno
+export DENO_INSTALL="$paths[sdk]/deno"
 #? haskell
 export integer STACK_XDG=1
 export integer GHCUP_USE_XDG_DIRS=1
 export CABAL_DIR="$paths[data]/cabal"
 export CABAL_CONFIG="$paths[config]/cabal/config"
 export AGDA_DIR="$paths[sdk]/agda"
-#? ocaml
-export OPAMROOT="$paths[sdk]/opam"
-#? elixir
-export MIX_HOME="$paths[sdk]/elixir/mix"
-export MIX_ARCHIVES="$MIX_HOME/archives"
-export MIX_REBAR="$paths[sdk]/elixir/rebar"
-export MIX_REBAR3="$paths[sdk]/elixir/rebar3"
-export HEX_HOME="$paths[sdk]/elixir/hex"
-#? wolfram
-export WOLFRAM_USERBASE="$XDG_STATE_HOME/wolfram"
-#? go
-export GOPATH="$paths[sdk]/go"
-export GO111MODULE="on"
-export GOPROXY="https://goproxy.io,direct"
 
 # compose path
 paths[homebrew]="/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
