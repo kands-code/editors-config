@@ -53,10 +53,6 @@ export MPLCONFIGDIR="$XDG_STATE_HOME/matplotlib"
 export RYE_HOME="$paths[sdk]/rye"
 #? deno
 export DENO_INSTALL="$paths[sdk]/deno"
-#? elixir
-export MIX_HOME="$paths[sdk]/elixir/mix"
-export MIX_ARCHIVES="$MIX_HOME/archives"
-export HEX_HOME="$paths[sdk]/elixir/hex"
 #? haskell
 export integer STACK_XDG=1
 export integer GHCUP_USE_XDG_DIRS=1
