@@ -40,6 +40,7 @@ cmake -G "Unix Makefiles" -B "$BUILD_DIR" -S "$LLVM_DIR/llvm" \
     -DBUILD_SHARED_LIBS=OFF \
     -DLLVM_LIT_ARGS="-v" \
     -DLLVM_USE_LINKER="$ld" \
+    -DLLVM_EXTERNAL_LIT="$TOOLS_DIR/bin/lit" \
     -DLLVM_CCACHE_BUILD=ON \
     -DLLVM_ENABLE_BINDINGS=ON \
     -DLLVM_INSTALL_UTILS=ON \
@@ -50,15 +51,20 @@ cmake -G "Unix Makefiles" -B "$BUILD_DIR" -S "$LLVM_DIR/llvm" \
     -DLLVM_ENABLE_LTO=Thin \
     -DLLVM_ENABLE_RTTI=ON \
     -DCMAKE_BUILD_TYPE=Release \
-    -DLLVM_TARGET_ARCH="X86" \
-    -DLLVM_TARGETS_TO_BUILD="AArch64;ARM;WebAssembly;X86" \
-    -DLLVM_ENABLE_PROJECTS="bolt;flang;clang;clang-tools-extra;lld;lldb;mlir;polly;libclc" \
+    -DLLVM_TARGET_ARCH="host" \
+    -DLLVM_TARGETS_TO_BUILD="AArch64;ARM;WebAssembly;X86;RISCV" \
+    -DLLVM_ENABLE_PROJECTS="bolt;flang;clang;clang-tools-extra;lld;lldb;mlir;polly" \
     -DLLVM_ENABLE_RUNTIMES="libc;libunwind;libcxxabi;pstl;libcxx;compiler-rt;openmp;offload"
 
 # build and install
 cd "$BUILD_DIR"
 make install -j6
-[[ "$?" != "0" ]] && exit 1
+if [[ "$?" != "0" ]]; then
+    echo "== build failed!  =="
+    exit 1
+fi
 cd "$ROOT_DIR"
-[[ -d "$TOOLS_DIR" ]] && rm -rf "$TOOLS_DIR"
+if [[ -d "$TOOLS_DIR" ]]; then
+    rm -rf "$TOOLS_DIR"
+fi
 mv "$INSTALL_DIR" "$TOOLS_DIR"
