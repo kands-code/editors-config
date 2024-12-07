@@ -61,12 +61,14 @@ export CABAL_CONFIG="$paths[config]/cabal/config"
 export AGDA_DIR="$paths[sdk]/agda"
 
 # compose path
+export JAVA_HOME="$paths[sdk]/jdk/jdk-23.0.1+11/Contents/Home"
 paths[homebrew]="/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
-paths[path]="/opt/homebrew/opt/llvm/bin"               # for llvm
+paths[path]=":$XDG_USER_BIN"                           # for user local
+paths[path]+=":$HOMEBREW_PREFIX/opt/llvm/bin"          # for llvm
+paths[path]+=":$JAVA_HOME/bin"                         # for jdk
 paths[path]+=":$RUSTUP_BIN"                            # for rustup itself
-paths[path]+=":$RUSTUP_HOME/bin"                       # for rustup
 paths[path]+=":$CARGO_HOME/bin"                        # for rust cargo
 paths[path]+=":$DENO_INSTALL/bin"                      # for deno
-paths[path]+=":$XDG_USER_BIN"                          # for user local
-paths[path]+=":$HOMEBREW_PREFIX/opt/postgresql@16/bin" # for postgresql
+paths[path]+=":$CABAL_DIR/bin"                         # for haskell
+paths[path]+=":$HOMEBREW_PREFIX/opt/postgresql@17/bin" # for postgresql
 export PATH="$paths[path]":"$PATH"                     # user path before system path

@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-# path
-allPath="$HOME/.local/bin"               # user bin
-allPath+=":$HOME/.local/share/cabal/bin" # haskell
-allPath+=":$HOME/.local/sdk/cargo/bin"   # rust
-allPath+=":$HOME/.local/sdk/deno/bin"    # deno
-allPath+=":$PATH"                        # default PATH
-export PATH="$allPath"
+# compose path
+export JAVA_HOME="$HOME/.local/sdk/jdk/jdk-23.0.1+11"
+allPath="$XDG_USER_BIN"        # for user local
+allPath+=":$JAVA_HOME/bin"     # for jdk
+allPath+=":$CARGO_HOME/bin"    # for rust cargo
+allPath+=":$DENO_INSTALL/bin"  # for deno
+allPath+=":$CABAL_DIR/bin"     # for haskell
+export PATH="$allPath":"$PATH" # user path before system path
 
 # ghcup-env
 [ -f "/home/kands/.local/share/ghcup/env" ] && source "/home/kands/.local/share/ghcup/env"
@@ -21,6 +22,8 @@ if [[ "$XDG_SESSION_TYPE" == "tty" ]]; then
   export LC_NUMERIC='en_US.UTF-8'
   export LC_TIME='en_US.UTF-8'
 fi
+
+# import path
 systemctl --user import-environment PATH
 
 # read bashrc if it exists
