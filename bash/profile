@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # compose path
-export JAVA_HOME="$HOME/.local/sdk/jdk/jdk-23.0.1+11"
+export JAVA_HOME="$HOME/.local/sdk/jdk/jdk-21.0.5+11"
 allPath="$XDG_USER_BIN"        # for user local
 allPath+=":$JAVA_HOME/bin"     # for jdk
 allPath+=":$CARGO_HOME/bin"    # for rust cargo
