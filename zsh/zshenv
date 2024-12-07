@@ -62,7 +62,8 @@ export AGDA_DIR="$paths[sdk]/agda"
 
 # compose path
 paths[homebrew]="/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
-paths[path]="$RUSTUP_BIN"                              # for rustup itself
+paths[path]="/opt/homebrew/opt/llvm/bin"               # for llvm
+paths[path]+=":$RUSTUP_BIN"                            # for rustup itself
 paths[path]+=":$RUSTUP_HOME/bin"                       # for rustup
 paths[path]+=":$CARGO_HOME/bin"                        # for rust cargo
 paths[path]+=":$DENO_INSTALL/bin"                      # for deno
