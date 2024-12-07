@@ -61,11 +61,9 @@ export CABAL_CONFIG="$paths[config]/cabal/config"
 export AGDA_DIR="$paths[sdk]/agda"
 
 # compose path
-export JAVA_HOME="$paths[sdk]/jdk/jdk-21.0.5+11/Contents/Home"
 paths[homebrew]="/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
 paths[path]=":$XDG_USER_BIN"                           # for user local
 paths[path]+=":$HOMEBREW_PREFIX/opt/llvm/bin"          # for llvm
-paths[path]+=":$JAVA_HOME/bin"                         # for jdk
 paths[path]+=":$RUSTUP_BIN"                            # for rustup itself
 paths[path]+=":$CARGO_HOME/bin"                        # for rust cargo
 paths[path]+=":$DENO_INSTALL/bin"                      # for deno

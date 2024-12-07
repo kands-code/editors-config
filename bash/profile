@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
 # compose path
-export JAVA_HOME="$HOME/.local/sdk/jdk/jdk-21.0.5+11"
 allPath="$XDG_USER_BIN"        # for user local
-allPath+=":$JAVA_HOME/bin"     # for jdk
 allPath+=":$CARGO_HOME/bin"    # for rust cargo
 allPath+=":$DENO_INSTALL/bin"  # for deno
 allPath+=":$CABAL_DIR/bin"     # for haskell
