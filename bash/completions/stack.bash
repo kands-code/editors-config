@@ -1,5 +1,4 @@
-_stack()
-{
+_stack() {
     local CMDLINE
     local IFS=$'\n'
     CMDLINE=(--bash-completion-index $COMP_CWORD)
@@ -8,7 +7,7 @@ _stack()
         CMDLINE=(${CMDLINE[@]} --bash-completion-word $arg)
     done
 
-    COMPREPLY=( $(/Users/kevinstephen/.local/bin/stack "${CMDLINE[@]}") )
+    COMPREPLY=($($HOME/.local/bin/stack "${CMDLINE[@]}"))
 }
 
 complete -o filenames -F _stack stack
