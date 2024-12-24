@@ -29,6 +29,9 @@ export LESSKEY="$paths[config]/less/lesskey"
 export LESSHISTFILE="$XDG_STATE_HOME/less_history"
 export RLWRAP_HOME="$XDG_STATE_HOME/rlwrap_history"
 
+# wolfram
+export WOLFRAM_USERBASE="$XDG_STATE_HOME/wolfram"
+
 # for sql
 export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
 export PSQLRC="$paths[config]/psqlrc"
