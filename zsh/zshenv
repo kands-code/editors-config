@@ -59,10 +59,6 @@ export integer GHCUP_USE_XDG_DIRS=1
 export CABAL_DIR="$paths[data]/cabal"
 export CABAL_CONFIG="$paths[config]/cabal/config"
 export AGDA_DIR="$paths[sdk]/agda"
-#? xmake
-export XMAKE_GLOBALDIR="$XDG_STATE_HOME/xmake"
-export XMAKE_PKG_CACHEDIR="$XDG_STATE_HOME/xmake/cache"
-export XMAKE_PKG_INSTALLDIR="$XDG_STATE_HOME/xmake/install"
 
 # compose path
 paths[homebrew]="/opt/homebrew/bin:/opt/homebrew/sbin" # for homebrew
