@@ -21,12 +21,9 @@ function dailyup() {
     rustup update
     if [ "$?" = '0' ]; then
       cargo install --all-features \
-        cargo-generate \
-        create-tauri-app \
         mdbook \
         mdbook-katex \
-        mdbook-toc \
-        tauri-cli
+        mdbook-toc
     fi
   fi
 }
